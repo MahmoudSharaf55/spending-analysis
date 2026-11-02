@@ -1,0 +1,16 @@
+{
+  "name": "poc-bank",
+  "version": "1.0.0",
+  "description": "Bank Statement Analyzer POC",
+  "scripts": {
+    "dev:backend": "npm --prefix express-app run dev",
+    "dev:frontend": "npm --prefix react-app run dev",
+    "build:backend": "npm --prefix express-app run build",
+    "build:frontend": "npm --prefix react-app run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "test:parse": "npm --prefix express-app exec tsx src/test-parse.ts"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

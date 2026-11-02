@@ -1,0 +1,10 @@
+express-app/node_modules
+express-app/yarn.lock
+express-app/dist
+express-app/.env
+react-app/node_modules
+react-app/yarn.lock
+react-app/.next
+react-app/out
+react-app/dist
+statements-sample

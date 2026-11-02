@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Design Tokens & Modern Dark / Light Mode Theme System
+   ========================================================================== */
+
+:root {
+  /* Base Light Palette */
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-secondary: #f1f5f9;
+  --bg-input: #ffffff;
+  --bg-dropzone: #fafbfd;
+  --bg-dropzone-active: #eff6ff;
+
+  /* Text Colors */
+  --text-main: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+
+  /* Borders */
+  --border-color: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --border-active: #93c5fd;
+
+  /* Primary Accent */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-bg: #eff6ff;
+  --primary-text: #ffffff;
+
+  /* Semantic Status Colors (Income, Expense, Badges) */
+  --success: #16a34a;
+  --success-bg: #dcfce7;
+  --success-border: #bbf7d0;
+
+  --danger: #dc2626;
+  --danger-bg: #fee2e2;
+  --danger-border: #fecaca;
+
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
+  --warning-border: #fde68a;
+
+  --info: #0284c7;
+  --info-bg: #e0f2fe;
+  --info-border: #bae6fd;
+
+  --purple: #7c3aed;
+  --purple-bg: #f3e8ff;
+  --purple-border: #e9d5ff;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  /* Radius & Transitions */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-full: 9999px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* ==========================================================================
+   Awesome Dark Mode Palette (Midnight Slate & Deep Zinc)
+   ========================================================================== */
+
+[data-theme="dark"] {
+  /* Base Dark Palette */
+  --bg-body: #1a1a1a;
+  --bg-card: #292929;
+  --bg-card-hover: #393939;
+  --bg-secondary: #242424;
+  --bg-input: #333333;
+  --bg-dropzone: #1f1f1f;
+  --bg-dropzone-active: #2e2e2e;
+
+  /* Text Colors */
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+
+  /* Borders */
+  --border-color: #555555;
+  --border-subtle: #2e2e2e;
+  --border-active: #3b82f6;
+
+  /* Primary Accent */
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-bg: rgba(59, 130, 246, 0.15);
+  --primary-text: #ffffff;
+
+  /* Semantic Status Colors */
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.14);
+  --success-border: rgba(52, 211, 153, 0.3);
+
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.14);
+  --danger-border: rgba(248, 113, 113, 0.3);
+
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.14);
+  --warning-border: rgba(251, 191, 36, 0.3);
+
+  --info: #38bdf8;
+  --info-bg: rgba(56, 189, 248, 0.14);
+  --info-border: rgba(56, 189, 248, 0.3);
+
+  --purple: #a78bfa;
+  --purple-bg: rgba(167, 139, 250, 0.14);
+  --purple-border: rgba(167, 139, 250, 0.3);
+
+  /* Shadows with ambient depth */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
