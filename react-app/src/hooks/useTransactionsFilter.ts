@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { Transaction, FlowType } from '../types';
+import type { Transaction } from '../types';
 import { DEFAULT_PAGE_SIZE } from '../utils/constants';
 
 export function useTransactionsFilter(transactions: Transaction[]) {

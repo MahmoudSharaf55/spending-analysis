@@ -17,7 +17,7 @@ export const ExecutiveReportModal: React.FC<ExecutiveReportModalProps> = ({
   isOpen,
   onClose
 }) => {
-  const { lang, t, isRtl } = useLanguage();
+  const { lang, t } = useLanguage();
 
   if (!isOpen || !report) return null;
 

@@ -7,4 +7,6 @@ react-app/yarn.lock
 react-app/.next
 react-app/out
 react-app/dist
+react-app/.env
+react-app/.env.production
 statements-sample

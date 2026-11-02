@@ -34,7 +34,7 @@ interface InvestmentAdvisorProps {
 }
 
 export const InvestmentAdvisor: React.FC<InvestmentAdvisorProps> = ({ report }) => {
-  const { lang, t, isRtl } = useLanguage();
+  const { lang, t } = useLanguage();
   const currency = report.currency;
 
   const allocation = useMemo(() => deriveCapitalAllocation(report), [report]);

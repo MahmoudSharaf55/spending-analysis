@@ -7,8 +7,7 @@ import {
   RotateCcw,
   Bot,
   User,
-  Loader2,
-  ChevronDown
+  Loader2
 } from 'lucide-react';
 import type { FinancialReport } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';

@@ -18,7 +18,7 @@ import type { SpendingAnalysis, MonthlyCashFlow } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTheme } from '../../context/ThemeContext';
 import { translateCategory } from '../../i18n';
-import { formatCurrency, formatMoneyString } from '../../utils/currency';
+import { formatMoneyString } from '../../utils/currency';
 import { CATEGORY_COLORS } from '../../utils/constants';
 
 interface SpendingChartsProps {

@@ -75,7 +75,7 @@ export class AccountDetectorService {
     const accounts: StatementAccountMeta[] = [];
 
     // 1. Multi-account summary table (like in Nile Demo statement)
-    const summaryRegex = /^([0-9A-Za-z-]+)\s{2,}([A-Za-z\s]+?)\s{2,}([A-Z]{3})\s{2,}([0-9,]+\.\d{2})\s{2,}([0-9,]+\.\d{2})/gm;
+    const summaryRegex = /^([0-9A-Za-z-]+)\s+([A-Za-z\s]+?)\s+([A-Z]{3})\s+([0-9,]+\.\d{2})\s+([0-9,]+\.\d{2})/gm;
     let match;
     while ((match = summaryRegex.exec(text)) !== null) {
       const accNum = match[1].trim();

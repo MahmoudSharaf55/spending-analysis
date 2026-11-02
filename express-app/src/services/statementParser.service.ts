@@ -107,7 +107,7 @@ export class StatementParserService {
     // Date regex matches:
     // - YYYY-MM-DD (e.g. 2025-08-01)
     // - DD/MM/YYYY or DD-MM-YYYY (e.g. 05/01/2025)
-    const dateRowRegex = /^\s*(\d{4}-\d{2}-\d{2}|\d{2}[/.-]\d{2}[/.-]\d{4})\s{2,}/;
+    const dateRowRegex = /^\s*(\d{4}-\d{2}-\d{2}|\d{2}[/.-]\d{2}[/.-]\d{4})\s+/;
     const amountRegex = /(-?[0-9]{1,3}(?:,[0-9]{3})*\.\d{2}|-?[0-9]+\.\d{2})/g;
 
     let lastTransaction: RawExtractedTransaction | null = null;

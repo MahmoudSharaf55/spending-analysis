@@ -1,7 +1,18 @@
 import axios from 'axios';
 import type { FinancialReport } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const rawBaseUrl = (import.meta.env.VITE_API_BASE_URL || '/api').trim();
+// Ensure the base URL ends with /api (where Express routes are mounted)
+const API_BASE_URL =
+  rawBaseUrl === '/api'
+    ? '/api'
+    : rawUrlHasApi(rawBaseUrl)
+      ? rawBaseUrl.replace(/\/+$/, '')
+      : `${rawBaseUrl.replace(/\/+$/, '')}/api`;
+
+function rawUrlHasApi(url: string): boolean {
+  return url.endsWith('/api') || url.endsWith('/api/');
+}
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -60,9 +71,28 @@ export const statementApi = {
     history: ChatMessage[] = [],
     lang: 'en' | 'ar' = 'en'
   ): Promise<string> {
+    // Strip heavy raw debug strings (originalData, rawLine) to keep payload compact and fast
+    const sanitizedTransactions = (report.transactions || []).map((t) => ({
+      id: t.id,
+      date: t.date,
+      description: t.description,
+      amount: t.amount,
+      currency: t.currency,
+      accountType: t.accountType,
+      accountNumber: t.accountNumber,
+      direction: t.direction,
+      flowType: t.flowType,
+      category: t.category
+    }));
+
+    const sanitizedReport = {
+      ...report,
+      transactions: sanitizedTransactions
+    };
+
     const response = await apiClient.post<ChatResponse>('/chat', {
       question,
-      report,
+      report: sanitizedReport,
       history,
       lang
     });
