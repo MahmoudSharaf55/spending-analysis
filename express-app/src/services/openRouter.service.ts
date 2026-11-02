@@ -19,7 +19,7 @@ export interface CategorizationResponseItem {
 export class OpenRouterService {
   private static apiKey = process.env.OPENROUTER_API_KEY || '';
   private static baseUrl = process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1';
-  private static model = process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-001';
+  private static model = process.env.OPENROUTER_MODEL || '';
 
   /**
    * Check if OpenRouter is configured.
@@ -112,7 +112,7 @@ Requirements:
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.apiKey}`,
             'HTTP-Referer': 'https://localhost:3000',
-            'X-Title': 'Bank Statement Analyzer POC'
+            'X-Title': 'BankIQ'
           },
           timeout: 25000
         }
@@ -189,7 +189,7 @@ Instructions:
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.apiKey}`,
             'HTTP-Referer': 'https://localhost:3000',
-            'X-Title': 'Bank Statement Analyzer POC'
+            'X-Title': 'BankIQ'
           },
           timeout: 25000
         }

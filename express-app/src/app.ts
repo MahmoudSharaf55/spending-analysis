@@ -25,7 +25,7 @@ export function createApp(): Application {
   // Root endpoint info
   app.get('/', (_req, res) => {
     res.json({
-      name: 'Bank Statement Analyzer POC API',
+      name: 'BankIQ API',
       version: '1.0.0',
       status: 'active',
       endpoints: {

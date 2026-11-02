@@ -1,6 +1,6 @@
-# Bank Statement Analyzer – POC
+# BankIQ – AI-Powered Financial Intelligence & Wealth Platform
 
-A specialized, resilient Bank Statement Analyzer single-page application built with **Node.js + Express + TypeScript** (backend) and **React + Vite + TypeScript + Recharts** (frontend).
+A specialized, resilient fintech single-page application built with **Node.js + Express + TypeScript** (backend) and **React + Vite + TypeScript + Recharts** (frontend).
 
 This POC was engineered specifically to handle multi-account, multi-page, multi-table bank statements — validated against the 10-page test fixture `Testing bank statements.pdf`.
 

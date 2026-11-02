@@ -19,6 +19,17 @@ export interface StatusResponse {
   openRouterConfigured: boolean;
 }
 
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export interface ChatResponse {
+  success: boolean;
+  answer?: string;
+  error?: string;
+}
+
 export const statementApi = {
   /**
    * Upload and analyze a custom statement file (PDF or CSV).
@@ -41,6 +52,29 @@ export const statementApi = {
   },
 
   /**
+   * Ask the AI Financial Copilot a question about the statement.
+   */
+  async askCopilot(
+    question: string,
+    report: FinancialReport,
+    history: ChatMessage[] = [],
+    lang: 'en' | 'ar' = 'en'
+  ): Promise<string> {
+    const response = await apiClient.post<ChatResponse>('/chat', {
+      question,
+      report,
+      history,
+      lang
+    });
+
+    if (!response.data.success || !response.data.answer) {
+      throw new Error(response.data.error || 'Failed to get answer from AI Copilot.');
+    }
+
+    return response.data.answer;
+  },
+
+  /**
    * Check backend server health and OpenRouter AI connection status.
    */
   async checkStatus(): Promise<StatusResponse> {
@@ -48,3 +82,4 @@ export const statementApi = {
     return response.data;
   }
 };
+

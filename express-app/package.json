@@ -2,7 +2,7 @@
   "name": "express-app",
   "version": "1.0.0",
   "type": "module",
-  "description": "Bank Statement Analyzer POC Backend",
+  "description": "BankIQ Backend - AI-Powered Financial Intelligence API",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

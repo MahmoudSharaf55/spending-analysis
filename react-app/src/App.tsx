@@ -11,6 +11,10 @@ import { DateRangeFilter } from './components/common/DateRangeFilter';
 import { SpendingCharts } from './components/charts/SpendingCharts';
 import { FinancialInsights } from './components/insights/FinancialInsights';
 import { TransactionsTable } from './components/transactions/TransactionsTable';
+import { ExportDropdown } from './components/export/ExportDropdown';
+import { ExecutiveReportModal } from './components/export/ExecutiveReportModal';
+import { InvestmentAdvisor } from './components/investment/InvestmentAdvisor';
+import { StatementChatDrawer } from './components/chat/StatementChatDrawer';
 import { computeFilteredAnalytics } from './utils/analytics';
 
 const DashboardContent: React.FC = () => {
@@ -25,6 +29,7 @@ const DashboardContent: React.FC = () => {
 
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
+  const [isExecutiveReportOpen, setIsExecutiveReportOpen] = useState<boolean>(false);
 
   // Reset date range filter when a new statement is analyzed or reset
   useEffect(() => {
@@ -62,7 +67,11 @@ const DashboardContent: React.FC = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div
+      className={`dashboard-container ${
+        isExecutiveReportOpen ? 'printing-executive-report' : ''
+      }`}
+    >
       {/* App Header with Dark Mode & Language Toggles */}
       <Header report={report} openRouterStatus={openRouterStatus} />
 
@@ -78,6 +87,21 @@ const DashboardContent: React.FC = () => {
       {/* Main Analysis Results */}
       {report && (
         <>
+          {/* Executive Action Toolbar */}
+          <div className="report-action-bar no-print">
+            <div className="statement-period-pill">
+              <span className="period-dot" />
+              <span>
+                {report.statementPeriod.start} — {report.statementPeriod.end}
+              </span>
+            </div>
+            <ExportDropdown
+              report={report}
+              filteredTransactions={dateFilteredTransactions}
+              onOpenExecutivePdf={() => setIsExecutiveReportOpen(true)}
+            />
+          </div>
+
           {/* Section B: Financial Summary & Secondary Metrics */}
           <section>
             <FinancialSummaryCards
@@ -115,6 +139,9 @@ const DashboardContent: React.FC = () => {
             />
           )}
 
+          {/* Section: WealthGrow – Smart Investment & Trading Advisor */}
+          <InvestmentAdvisor report={report} />
+
           {/* Section F: AI Financial Insights & Observations */}
           <FinancialInsights
             insights={report.insights}
@@ -126,6 +153,16 @@ const DashboardContent: React.FC = () => {
             transactions={dateFilteredTransactions}
             currency={report.currency}
           />
+
+          {/* Executive PDF Report & Preview Modal */}
+          <ExecutiveReportModal
+            report={report}
+            isOpen={isExecutiveReportOpen}
+            onClose={() => setIsExecutiveReportOpen(false)}
+          />
+
+          {/* Statement AI Financial Copilot Chat Drawer */}
+          <StatementChatDrawer report={report} />
         </>
       )}
     </div>

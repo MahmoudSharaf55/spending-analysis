@@ -1,4 +1,5 @@
 import React from 'react';
+import { Download } from 'lucide-react';
 import type { Transaction } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 import { translateCategory } from '../../i18n';
@@ -6,6 +7,7 @@ import { FlowBadge } from '../common/FlowBadge';
 import { MoneyDisplay } from '../common/MoneyDisplay';
 import { TableFilters } from './TableFilters';
 import { useTransactionsFilter } from '../../hooks/useTransactionsFilter';
+import { exportTransactionsToCSV } from '../../utils/export';
 
 interface TransactionsTableProps {
   transactions: Transaction[];
@@ -52,17 +54,38 @@ export const TransactionsTable: React.FC<TransactionsTableProps> = ({
   const fromRow = (currentPage - 1) * pageSize + 1;
   const toRow = Math.min(currentPage * pageSize, filteredCount);
 
+  const handleExportCSV = () => {
+    exportTransactionsToCSV({
+      transactions: filteredTransactions,
+      currency: tableCurrency,
+      filename: `transactions_export_${new Date().toISOString().slice(0, 10)}.csv`,
+      lang
+    });
+  };
+
   return (
     <section className="card transactions-card">
       <div className="table-header-bar">
         <h2 className="card-title-text">
           {t.transactionsHeader} <span className="tx-count-pill">({filteredCount})</span>
         </h2>
-        <div className="table-header-meta">
-          {t.showingRows
-            .replace('{from}', String(filteredCount === 0 ? 0 : fromRow))
-            .replace('{to}', String(toRow))
-            .replace('{total}', String(totalCount))}
+        <div className="table-header-right">
+          <div className="table-header-meta">
+            {t.showingRows
+              .replace('{from}', String(filteredCount === 0 ? 0 : fromRow))
+              .replace('{to}', String(toRow))
+              .replace('{total}', String(totalCount))}
+          </div>
+          <button
+            type="button"
+            className="btn btn-outline btn-sm table-export-btn"
+            onClick={handleExportCSV}
+            title={t.exportCsvFiltered}
+            disabled={filteredTransactions.length === 0}
+          >
+            <Download size={14} />
+            <span>CSV</span>
+          </button>
         </div>
       </div>
 

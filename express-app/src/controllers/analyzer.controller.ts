@@ -6,6 +6,7 @@ import { TransactionCategorizerService } from '../services/transactionCategorize
 import { FinancialAnalysisService } from '../services/financialAnalysis.service.js';
 import { InsightsGeneratorService } from '../services/insightsGenerator.service.js';
 import { OpenRouterService } from '../services/openRouter.service.js';
+import { StatementChatService } from '../services/statementChat.service.js';
 
 export class AnalyzerController {
   /**
@@ -73,6 +74,37 @@ export class AnalyzerController {
       });
     } finally {
       removeTempFile(file.path);
+    }
+  }
+
+  /**
+   * POST /api/chat - Interactive statement Q&A copilot.
+   */
+  static async chat(req: Request, res: Response): Promise<Response> {
+    const { question, report, history, lang } = req.body;
+
+    if (!question || !report) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required parameters: question and report.'
+      });
+    }
+
+    try {
+      const answer = await StatementChatService.answerQuestion({
+        question,
+        report,
+        history,
+        lang
+      });
+
+      return res.json({ success: true, answer });
+    } catch (err: any) {
+      console.error('[AnalyzerController] Chat query error:', err);
+      return res.status(500).json({
+        success: false,
+        error: err.message || 'Failed to answer question.'
+      });
     }
   }
 
